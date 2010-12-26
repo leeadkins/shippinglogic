@@ -33,9 +33,7 @@ module Shippinglogic
             "There was a problem with your UPS request, and we couldn't locate a specific error message. This means your response " +
             "was in an unexpected format. You might try glancing at the raw response by using the 'response' method on this error object."
           )
-        end
-        
-        super(errors.collect { |error| error[:message] }.join(", "))
+        end        
       end
     end
   end
