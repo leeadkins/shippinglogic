@@ -22,7 +22,7 @@ module Shippinglogic
     #   
     #   tracking_details.events.first
     #   # => #<Shippinglogic::UPS::Track::Event @postal_code="95817", @name="Delivered", @state="CA",
-    #   #     @city="Sacramento", @type="Delivered", @country="US", @occured_at=Mon Dec 08 10:43:37 -0500 2008>
+    #   #     @city="Sacramento", @type="Delivered", @country="US", @occurred_at=Mon Dec 08 10:43:37 -0500 2008>
     #   
     #   tracking_details.events.first.name
     #   # => "Delivered"
@@ -40,7 +40,7 @@ module Shippinglogic
       
       class Details
         # Each tracking result is an object of this class
-        class Event; attr_accessor :name, :type, :occured_at, :city, :state, :postal_code, :country; end
+        class Event; attr_accessor :name, :type, :occurred_at, :city, :state, :postal_code, :country; end
         
         attr_accessor :origin_city, :origin_state, :origin_country,
           :destination_city, :destination_state, :destination_country,
@@ -77,8 +77,7 @@ module Shippinglogic
             status            = details[:status][:status_type]
             event.name        = status[:description]
             event.type        = status[:code]
-            #FIXME The proper spelling is "occurred", not "occured."
-            event.occured_at  = Time.parse(details[:date] + details[:time])
+            event.occurred_at  = Time.parse(details[:date] + details[:time])
             location          = details[:activity_location][:address]
             event.city        = location[:city]
             event.state       = location[:state_province_code]
