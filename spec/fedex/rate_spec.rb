@@ -1,8 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "FedEx Rate" do
+  before(:each) do
+    setup_fedex_responses
+  end
+  
   it "should rate the shipment" do
-    use_response(:rate_defaults)
+    use_fedex_response(:rate_defaults)
     
     fedex = new_fedex
     rates = fedex.rate
@@ -23,7 +27,7 @@ describe "FedEx Rate" do
   end
   
   it "should not require package dimensions when not using custom packaging" do
-    use_response(:rate_non_custom_packaging)
+    use_fedex_response(:rate_non_custom_packaging)
     
     fedex = new_fedex
     rates = fedex.rate
@@ -46,7 +50,7 @@ describe "FedEx Rate" do
   end
   
   it "should handle responses with no services" do
-    use_response(:rate_no_services)
+    use_fedex_response(:rate_no_services)
     
     fedex = new_fedex
     rates = fedex.rate
@@ -59,7 +63,7 @@ describe "FedEx Rate" do
   end
   
   it "should remove any services that don't meet the deadline" do
-    use_response(:rate_defaults)
+    use_fedex_response(:rate_defaults)
     
     fedex = new_fedex
     rates = fedex.rate
@@ -73,7 +77,7 @@ describe "FedEx Rate" do
   end
   
   it "should rate the shipment with an insured value" do
-    use_response(:rate_insurance)
+    use_fedex_response(:rate_insurance)
     
     fedex = new_fedex
     rates = fedex.rate

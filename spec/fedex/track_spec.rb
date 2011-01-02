@@ -1,8 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "FedEx Track" do
+  before(:each) do
+    setup_fedex_responses
+  end
+  
   it "should track the package" do
-    use_response(:track_defaults)
+    use_fedex_response(:track_defaults)
     
     fedex = new_fedex
     track_details = fedex.track(:tracking_number => fedex_tracking_number)

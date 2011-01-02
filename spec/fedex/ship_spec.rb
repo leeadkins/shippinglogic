@@ -2,6 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "FedEx Ship" do
   before(:each) do
+    setup_fedex_responses
+    
     fedex = new_fedex
     @shipment = fedex.ship
     
@@ -12,7 +14,7 @@ describe "FedEx Ship" do
   end
   
   it "should create a new shipment" do
-    use_response(:ship_defaults)
+    use_fedex_response(:ship_defaults)
     
     @shipment.rate.should == 17.02
     @shipment.currency.should == "USD"
@@ -30,7 +32,7 @@ describe "FedEx Ship" do
   end
   
   it "should allow set the signature option" do
-    use_response(:ship_with_no_signature)
+    use_fedex_response(:ship_with_no_signature)
     @shipment.signature = "NO_SIGNATURE_REQUIRED"
     @shipment.rate.should == 35.53
   end
