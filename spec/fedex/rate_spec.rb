@@ -16,7 +16,7 @@ describe "FedEx Rate" do
     rate.name.should == "First Overnight"
     rate.type.should == "FIRST_OVERNIGHT"
     rate.saturday.should == false
-    rate.delivered_by.should == Time.parse("Fri Aug 07 08:00:00 -0400 2009")
+    rate.delivered_by.should == Time.parse("Fri Aug 07 08:00:00 2009")
     rate.speed.should == 86400 # 1.day
     rate.rate.should == 70.01
     rate.currency.should == "USD"
@@ -39,7 +39,7 @@ describe "FedEx Rate" do
     rate.name.should == "First Overnight"
     rate.type.should == "FIRST_OVERNIGHT"
     rate.saturday.should == false
-    rate.delivered_by.should == Time.parse("Mon Aug 10 08:00:00 -0400 2009")
+    rate.delivered_by.should == Time.parse("Mon Aug 10 08:00:00 2009")
     rate.speed.should == 86400 # 1.day
     rate.rate.should == 50.43
     rate.currency.should == "USD"
@@ -67,9 +67,9 @@ describe "FedEx Rate" do
     rates.attributes = fedex_shipper
     rates.attributes = fedex_recipient
     rates.attributes = fedex_package
-    rates.delivery_deadline = Time.parse("Aug 07 08:01:00 -0400 2009")
+    rates.delivery_deadline = Time.parse("Aug 07 08:01:00 2009")
     rates.size.should == 1
-    rates.first.delivered_by.should == Time.parse("Fri Aug 07 08:00:00 -0400 2009")
+    rates.first.delivered_by.should == Time.parse("Fri Aug 07 08:00:00 2009")
   end
   
   it "should rate the shipment with an insured value" do
