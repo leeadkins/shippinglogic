@@ -27,9 +27,9 @@ module Shippinglogic
         elsif notifications = response[:notifications]
           notifications = notifications.is_a?(Array) ? notifications : [notifications]
           notifications.delete_if { |notification| Response::SUCCESSFUL_SEVERITIES.include?(notification[:severity]) }
-          notifications.each { |notification| add_error(notification[:message], notification[:code]) }
+          notifications.each { |notification| add_error(notification[:message], :code => notification[:code]) }
         elsif response[:"soapenv:fault"] && detail = response[:"soapenv:fault"][:detail][:"con:fault"]
-          add_error(detail[:"con:reason"], detail[:"con:error_code"])
+          add_error(detail[:"con:reason"], :code => detail[:"con:error_code"])
           
           if detail[:"con:details"] && detail[:"con:details"][:"con1:validation_failure_detail"] && messages = detail[:"con:details"][:"con1:validation_failure_detail"][:"con1:message"]
             messages = messages.is_a?(Array) ? messages : [messages]

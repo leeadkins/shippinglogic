@@ -37,7 +37,7 @@ describe "Shippinglogic Errors" do
     @error.add_error("WITHOUT")
     @error.errors.last.should have_key(:code)
     @error.errors.last[:code].should be_nil
-    @error.add_error("WITH", "CODE")
+    @error.add_error("WITH", :code => "CODE")
     @error.errors.last[:code].should == "CODE"
   end
 end

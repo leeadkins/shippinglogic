@@ -7,8 +7,11 @@ module Shippinglogic
       self.response = response
     end
     
-    def add_error(error, code = nil)
-      errors << {:message => error, :code => code}
+    def add_error(error, additional_info = {})
+      info = {:code => nil}
+      info.merge!(additional_info)
+      info.merge!(:message => error)
+      errors << info
     end
     
     def errors
