@@ -8,6 +8,7 @@ module Shippinglogic
     include Attributes
     include HTTParty
     include Validation
+    # debug_output $stderr
     
     attr_accessor :base
     
