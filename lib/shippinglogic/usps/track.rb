@@ -13,7 +13,7 @@ module Shippinglogic
 
         def initialize(response)
           response = response[:track_response][:track_info]
-          self.events = [response[:track_summary], response[:track_detail]].flatten.collect do |details|
+          self.events = [response[:track_summary], response[:track_detail]].flatten.compact.collect do |details|
             event = Event.new
             event.authorized_agent = details[:authorized_agent]
             event.name = details[:name]
